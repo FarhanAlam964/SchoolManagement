@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="AUSC.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers Management</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="AUSC.jpg" alt="School Logo">
+        </div>
+        <ul>
+            <a href="home.html" style="text-decoration: none; color: white;"><li>Dashboard</li></a>
+            <a href="students.html" style="text-decoration: none; color: white;"><li>Students</li></a>
+            <a href="teachers.html" style="text-decoration: none; color: white;"><li>Teachers</li></a>
+            <a href="attendance.html" style="text-decoration: none; color: white;"><li>Attendance</li></a>
+            <a href="login.html" style="text-decoration: none; color: white;"><li>Logout</li></a>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Teachers Management</h1>
+        <!-- Add New Teacher Form -->
+        <div class="add-teacher">
+            <h2>Add New Teacher</h2>
+            <form id="addTeacherForm">
+                <input type="text" id="teacherName" placeholder="Enter Teacher Name" required>
+                <input type="text" id="teacherSubject" placeholder="Enter Subject" required>
+                <input type="number" id="teacherClass" placeholder="Enter Class" required>
+                <button type="submit">Add Teacher</button>
+            </form>
+        </div>
+
+        <!-- Teachers Table -->
+        <table class="teachers-table" id="teachersTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Subject</th>
+                    <th>Class</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Teachers will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // JavaScript code for adding teachers dynamically
+        let teacherId = 1; // To track the next teacher ID
+        const teachersTable = document.getElementById('teachersTable').getElementsByTagName('tbody')[0];
+        const addTeacherForm = document.getElementById('addTeacherForm');
+        
+        // Handle form submission
+        addTeacherForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get teacher input values
+            const name = document.getElementById('teacherName').value;
+            const subject = document.getElementById('teacherSubject').value;
+            const classNumber = document.getElementById('teacherClass').value;
+
+            // Add a new row to the teachers table
+            const newRow = teachersTable.insertRow();
+            newRow.innerHTML = `
+                <td>${teacherId}</td>
+                <td>${name}</td>
+                <td>${subject}</td>
+                <td>${classNumber}</td>
+                <td>
+                    <button class="editBtn">Edit</button>
+                    <button class="deleteBtn">Delete</button>
+                </td>
+            `;
+
+            // Add event listeners to the Edit and Delete buttons
+            const editBtn = newRow.querySelector('.editBtn');
+            const deleteBtn = newRow.querySelector('.deleteBtn');
+
+            editBtn.addEventListener('click', () => {
+                // Edit functionality (you can add your own logic here)
+                alert('Edit functionality is coming soon!');
+            });
+
+            deleteBtn.addEventListener('click', () => {
+                // Delete the current row
+                teachersTable.deleteRow(newRow.rowIndex - 1);
+            });
+
+            // Reset the form fields and increment the teacher ID
+            addTeacherForm.reset();
+            teacherId++;
+        });
+    </script>
+</body>
+</html>

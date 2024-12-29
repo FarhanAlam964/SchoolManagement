@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="AUSC.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="AUSC.jpg" alt="School Logo">
+        </div>
+        <ul>
+            <a href="home.html" style="text-decoration: none; color: white;"><li>Dashboard</li></a>
+            <a href="students.html" style="text-decoration: none; color: white;"><li>Students</li></a>
+            <a href="teachers.html" style="text-decoration: none; color: white;"><li>Teachers</li></a>
+            <a href="attendance.html" style="text-decoration: none; color: white;"><li>Attendance</li></a>
+            <a href="login.html" style="text-decoration: none; color: white;"><li>Logout</li></a>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Attendance Management</h1>
+        <div class="add-attendance">
+            <h2>Add New Attendance</h2>
+            <form id="addAttendanceForm">
+                <input type="text" id="studentName" placeholder="Enter Student Name" required>
+                <input type="text" id="studentClass" placeholder="Enter Class" required>
+                <input type="text" id="studentSection" placeholder="Enter Section" required>
+                <select id="attendanceStatus" required>
+                    <option value="Present">Present</option>
+                    <option value="Absent">Absent</option>
+                </select>
+                <button type="submit">Add Attendance</button>
+            </form>
+        </div>
+
+        <div class="attendance-list" id="attendanceList">
+            <!-- Attendance records will be added here -->
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code for dynamic attendance management
+        const attendanceList = document.getElementById('attendanceList');
+        const addAttendanceForm = document.getElementById('addAttendanceForm');
+        let attendanceId = 1;
+
+        // Handle form submission
+        addAttendanceForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get form values
+            const studentName = document.getElementById('studentName').value;
+            const studentClass = document.getElementById('studentClass').value;
+            const studentSection = document.getElementById('studentSection').value;
+            const attendanceStatus = document.getElementById('attendanceStatus').value;
+
+            // Create a new attendance card
+            const attendanceCard = document.createElement('div');
+            attendanceCard.classList.add('attendance-card');
+            attendanceCard.innerHTML = `
+                <div class="student-info">
+                    <h3>Student Name: ${studentName}</h3>
+                    <p>Class: ${studentClass}</p>
+                    <p>Section: ${studentSection}</p>
+                </div>
+                <div class="attendance-status">
+                    <p>Status: <span class="status-${attendanceStatus.toLowerCase()}">${attendanceStatus}</span></p>
+                </div>
+                <div class="actions">
+                    <button class="editBtn">Edit</button>
+                    <button class="deleteBtn">Delete</button>
+                </div>
+            `;
+
+            // Add event listeners for Edit and Delete buttons
+            const editBtn = attendanceCard.querySelector('.editBtn');
+            const deleteBtn = attendanceCard.querySelector('.deleteBtn');
+
+            editBtn.addEventListener('click', () => {
+                // Edit functionality (you can extend this to allow editing)
+                alert('Edit functionality is coming soon!');
+            });
+
+            deleteBtn.addEventListener('click', () => {
+                // Delete the current attendance card
+                attendanceCard.remove();
+            });
+
+            // Add the new attendance card to the list
+            attendanceList.appendChild(attendanceCard);
+
+            // Reset the form fields
+            addAttendanceForm.reset();
+            attendanceId++;
+        });
+    </script>
+</body>
+</html>

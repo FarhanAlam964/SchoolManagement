@@ -1,0 +1,297 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column; /* Default direction for mobile-first approach */
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  transition: width 0.3s, top 0.3s;
+  z-index: 10;
+}
+
+.sidebar .logo {
+  margin-bottom: 30px;
+}
+
+.sidebar .logo img {
+  width: 100px;
+  height: auto;
+  border-radius: 50px;
+}
+
+.sidebar ul {
+  list-style: none;
+  width: 100%;
+}
+
+.sidebar ul li {
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sidebar ul li:hover {
+  background-color: #34495e;
+}
+
+.content {
+  flex: 1;
+  background-color: #ecf0f1;
+  padding: 20px;
+  overflow-y: auto;
+  margin-left: 250px; /* Sidebar space */
+  transition: margin-left 0.3s;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.chart-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.chart {
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+}
+
+.students-table,
+.teachers-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.students-table thead,
+.teachers-table thead {
+  background-color: #34495e;
+  color: white;
+}
+
+.students-table th,
+.teachers-table th,
+.students-table td,
+.teachers-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.students-table tr:last-child td,
+.teachers-table tr:last-child td {
+  border-bottom: none;
+}
+
+.add-student,
+.add-teacher,
+.add-attendance {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.add-student button,
+.add-teacher button,
+.add-attendance button {
+  padding: 10px 20px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-student button:hover,
+.add-teacher button:hover,
+.add-attendance button:hover {
+  background-color: #2ecc71;
+}
+
+.attendance-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.attendance-card {
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: calc(33.33% - 20px); /* Three cards per row */
+  padding: 20px;
+  transition: transform 0.3s;
+}
+
+.attendance-card:hover {
+  transform: scale(1.05);
+}
+
+.student-info h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.attendance-status {
+  margin: 10px 0;
+}
+
+.status-present {
+  color: green;
+  font-weight: bold;
+}
+
+.status-absent {
+  color: red;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.actions button {
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.actions button:hover {
+  background-color: #2980b9;
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .content {
+    margin-left: 200px; /* Adjusted for smaller sidebar */
+  }
+
+  .students-table th,
+  .teachers-table th,
+  .students-table td,
+  .teachers-table td {
+    padding: 10px;
+  }
+
+  .stat-card {
+    width: 100%; /* Full width for better readability */
+    margin: 10px 0;
+  }
+
+  .chart {
+    width: 100%; /* Full width for small screens */
+    height: auto;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column; /* Stack sidebar on top */
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 0;
+    left: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .content {
+    margin-left: 0;
+  }
+
+  .students-table,
+  .teachers-table {
+    font-size: 12px; /* Smaller font for smaller screens */
+  }
+
+  .attendance-card {
+    width: 100%; /* Full width for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar .logo img {
+    width: 80px;
+  }
+
+  .sidebar ul li {
+    font-size: 14px;
+    padding: 10px 0;
+  }
+
+  .content {
+    padding: 10px;
+  }
+
+  .students-table,
+  .teachers-table {
+    font-size: 10px;
+  }
+
+  .add-student button,
+  .add-teacher button,
+  .add-attendance button {
+    padding: 8px 16px;
+  }
+
+  .attendance-card {
+    width: 100%; /* Full width */
+    margin-bottom: 10px;
+  }
+}

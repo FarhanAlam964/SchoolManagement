@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&family=Style+Script&display=swap');
+
+body {
+  background-image: url(treesBG.jpg);
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  background-color: transparent;
+  border-color: white;
+  font-size: 20px;
+  width: 100%;
+  max-width: 400px; /* Max width for the login container */
+  height: auto;
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(3px);
+  box-sizing: border-box;
+  outline: auto;
+}
+
+.username,
+.password {
+  font-size: 15px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  height: 35px;
+  width: 100%;
+  max-width: 300px;
+  background-color: transparent;
+  color: white;
+  border-color: white;
+  outline: auto;
+  padding: 5px;
+}
+
+.subBtn {
+  margin: 20px;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 175px;
+  background-color: transparent;
+  color: white;
+  border-color: white;
+  transition: ease-in 0.3s;
+}
+
+.subBtn:hover {
+  background-color: aliceblue;
+  color: black;
+}
+
+.subBtn:active {
+  background-color: white;
+  color: black;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    background-size: cover; /* Ensure the background image is always covering */
+  }
+
+  .login-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .username,
+  .password {
+    max-width: 90%;
+  }
+
+  .subBtn {
+    width: 90%; /* Make button take full width */
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .username,
+  .password {
+    max-width: 90%;
+    font-size: 14px; /* Slightly reduce font size for mobile */
+  }
+
+  .subBtn {
+    font-size: 18px; /* Slightly reduce font size for mobile */
+    width: 100%;
+  }
+}

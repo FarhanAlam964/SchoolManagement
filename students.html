@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="AUSC.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Management</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="AUSC.jpg" alt="School Logo">
+        </div>
+        <ul>
+            <a href="home.html" style="text-decoration: none; color: white;"><li>Dashboard</li></a>
+            <a href="students.html" style="text-decoration: none; color: white;"><li>Students</li></a>
+            <a href="teachers.html" style="text-decoration: none; color: white;"><li>Teachers</li></a>
+            <a href="attendance.html" style="text-decoration: none; color: white;"><li>Attendance</li></a>
+            <a href="login.html" style="text-decoration: none; color: white;"><li>Logout</li></a>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Students Management</h1>
+        <!-- Add New Student Form -->
+        <div class="add-student">
+            <h2>Add New Student</h2>
+            <form id="addStudentForm">
+                <input type="text" id="studentName" placeholder="Enter Name" required>
+                <input type="number" id="studentClass" placeholder="Enter Class" required>
+                <input type="text" id="studentSection" placeholder="Enter Section" required>
+                <button type="submit">Add Student</button>
+            </form>
+        </div>
+
+        <!-- Students Table -->
+        <table class="students-table" id="studentsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Section</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Students will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // JavaScript code for adding students dynamically
+        let studentId = 1; // To track the next student ID
+        const studentsTable = document.getElementById('studentsTable').getElementsByTagName('tbody')[0];
+        const addStudentForm = document.getElementById('addStudentForm');
+        
+        // Handle form submission
+        addStudentForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get student input values
+            const name = document.getElementById('studentName').value;
+            const studentClass = document.getElementById('studentClass').value;
+            const section = document.getElementById('studentSection').value;
+
+            // Add a new row to the students table
+            const newRow = studentsTable.insertRow();
+            newRow.innerHTML = `
+                <td>${studentId}</td>
+                <td>${name}</td>
+                <td>${studentClass}</td>
+                <td>${section}</td>
+                <td>
+                    <button class="editBtn">Edit</button>
+                    <button class="deleteBtn">Delete</button>
+                </td>
+            `;
+
+            // Add event listeners to the Edit and Delete buttons
+            const editBtn = newRow.querySelector('.editBtn');
+            const deleteBtn = newRow.querySelector('.deleteBtn');
+
+            editBtn.addEventListener('click', () => {
+                // Edit functionality (you can add your own logic here)
+                alert('Edit functionality is coming soon!');
+            });
+
+            deleteBtn.addEventListener('click', () => {
+                // Delete the current row
+                studentsTable.deleteRow(newRow.rowIndex - 1);
+            });
+
+            // Reset the form fields and increment the student ID
+            addStudentForm.reset();
+            studentId++;
+        });
+    </script>
+</body>
+</html>
